@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Crud operations</title>
+    </head>
+    <body>
+        <h1>Enter your details below</h1>
+        <h2>Pizza Menu</h2>
+        <ul>
+            {% for pizza in pizzas %}
+                <li>
+                    <strong>Name:</strong> {{ pizza.name }}<br>
+                    <strong>Price:</strong> ${{ pizza.price }}<br>
+                    <strong>Size:</strong> {{ pizza.size }}<br>
+                    <strong>Toppings:</strong> {{ pizza.toppings }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <h2>Order Form</h2>
+        <a href="{% url 'place_order' %}">Place an Order</a>
+    </body>
+</html>
