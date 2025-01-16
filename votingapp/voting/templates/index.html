@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voting App</title>
+</head>
+<body>
+    <h1>Vote for your favorite object</h1>
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}! <a href="{% url 'logout' %}">Logout</a></p>
+    {% else %}
+        <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a></p>
+    {% endif %}
+    <ul>
+        {% for obj in objects %}
+            <li>
+                {{ obj.name }} 
+                {% if user.is_authenticated %}
+                    <form action="{% url 'vote' obj.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Vote</button>
+                    </form>
+                {% else %}
+                    <p><a href="{% url 'login' %}">Login to vote</a></p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
